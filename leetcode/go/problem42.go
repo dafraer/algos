@@ -1,30 +1,23 @@
 func trap(height []int) int {
-	l1, r1 := 0, len(height)-1
+	l, r := 0, len(height)-1
 	mxhl, mxhr := 0, 0
 	vol := 0
-	oldmx := 0
-	for l1 < r1 {
-		if height[l1] > mxhl {
-			mxhl = height[l1]
-		}
-		if height[r1] > mxhr {
-			mxhr = height[r1]
-		}
-		if oldmx < min(mxhr, mxhl) {
-			taken := 0
-			for i := l1; i < r1; i++ {
-				if height[i]-oldmx > 0 {
-					taken += min(min(mxhr, mxhl), height[i]) - oldmx
-				}
-			}
-			vol += min(mxhr, mxhl)*(r1-l1) - taken - (r1-l1)*oldmx
-		}
-		if mxhl < mxhr {
-			l1++
+	for l < r {
+		//Adjust max height variables
+		mxhl = max(height[l], mxhl)
+		mxhr = max(height[r], mxhr)
+
+		//Calculate volume
+		if height[l] < height[r] {
+			vol += max(0, mxhl-height[l])
+			l++
+			fmt.Println("volume:", vol, "mxhl:", mxhl, "l:", l)
 		} else {
-			r1--
+			vol += max(0, mxhr-height[r])
+			r--
+			fmt.Println("volume:", vol, "mxhr:", mxhr, "r:", r)
 		}
-		oldmx = min(mxhl, mxhr)
 	}
 	return vol
 }
+	
