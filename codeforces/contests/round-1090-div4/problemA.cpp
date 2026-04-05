@@ -6,6 +6,8 @@ int main() {
     int t;
     cin >> t;
     while (t--){
-        printf("Hello World\n");
+       int n;
+       cin >> n;
+       cout << n << "\n";
     }
 }                                        
