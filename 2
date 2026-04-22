@@ -1,0 +1,9 @@
+ func titleToNumber(columnTitle string) int {
+    res := 0
+    cf := 1
+    for i := len(columnTitle)-1; i >= 0; i-- {
+        res += cf * int((columnTitle[i]-'A')+1)
+        cf *= 26
+    }
+    return res
+}
