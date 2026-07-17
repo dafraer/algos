@@ -1,6 +1,8 @@
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
-        m = set(s)
+        m = Counter(s)
+        m2 = Counter(t)
         for c in t:
-            if c not in m:
+            if m[c] != m2[c]:
                 return c
+
